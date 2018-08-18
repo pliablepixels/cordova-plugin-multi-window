@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-ismultiwindow" version="0.0.1">
+    <name>IsMultiWindowPlugin</name>
+
+    <description>An Android Cordova plugin that returns true if your app is running in multi window mode for Android 7+ devices</description>
+    <license>MIT</license>
+
+    <keywords>cordova,android,multiwindow</keywords>
+    <repo>https://github.com/pliablepixels/isMultiWindow</repo>
+    <issue>https://github.com/pliablepixels/isMultiWindow/issues</issue>
+  
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+  
+    <js-module src="www/isMultiWindowPlugin.js" name="plugin">
+    <runs/>
+        <clobbers target="IsMultiWindowPlugin" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="IsMultiWindowPlugin">
+                <param name="android-package" value="com.pliablepixels.IsMultiWindowPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/pliablepixels/IsMultiWindowPlugin.java" target-dir="src/com/pliablepixels/" />
+    </platform>
+</plugin>

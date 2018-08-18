@@ -1,0 +1,27 @@
+{
+  "name": "cordova-plugin-ismultiwindow",
+  "version": "0.0.1",
+  "description": "An Android Cordova plugin that returns true if your app is running in multi window mode for Android 7+ devices",
+  "cordova": {
+    "id": "cordova-plugin-ismultiwindow",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pliablepixels/isMultiWindow.git"
+  },
+  "keywords": [
+    "MultWindow",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+
+  "author": "Pliable Pixels <pliablepixels@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pliablepixels/isMultiWindow/issues"
+  },
+  "homepage": "https://github.com/pliablepixels/isMultiWindow"
+}
