@@ -8,9 +8,10 @@ This is my first cordova plugin, scraped together looking at [this](https://medi
 To use:
 
 ```
-     window.IsMultiWindowPlugin.get(function (state) {
-         console.log ("Multi-Window state is:+ state}, 
-         function (err) { 
-             console.log (" *************** ERR:"+JSON.stringify(err));
-             });
+    window.IsMultiWindowPlugin.get(function (state) {
+         console.log ("Multi-Window state is:" + state);
+    },
+    function (err) { 
+        console.log (" *************** ERR:"+JSON.stringify(err));
+    });
 ```
