@@ -8,25 +8,25 @@
     <license>MIT</license>
 
     <keywords>cordova,android,multiwindow</keywords>
-    <repo>https://github.com/pliablepixels/isMultiWindow</repo>
-    <issue>https://github.com/pliablepixels/isMultiWindow/issues</issue>
+    <repo>https://github.com/pliablepixels/cordova-plugin-multi-window</repo>
+    <issue>https://github.com/pliablepixels/cordova-plugin-multi-window/issues</issue>
   
     <engines>
         <engine name="cordova" version=">=3.0.0"/>
     </engines>
   
-    <js-module src="www/isMultiWindowPlugin.js" name="plugin">
+    <js-module src="www/MultiWindowPlugin.js" name="plugin">
     <runs/>
-        <clobbers target="IsMultiWindowPlugin" />
+        <clobbers target="MultiWindowPlugin" />
     </js-module>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="IsMultiWindowPlugin">
-                <param name="android-package" value="com.pliablepixels.IsMultiWindowPlugin"/>
+            <feature name="MultiWindowPlugin">
+                <param name="android-package" value="com.pliablepixels.MultiWindowPlugin"/>
                 <param name="onload" value="true" />
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/pliablepixels/IsMultiWindowPlugin.java" target-dir="src/com/pliablepixels/" />
+        <source-file src="src/android/com/pliablepixels/MultiWindowPlugin.java" target-dir="src/com/pliablepixels/" />
     </platform>
 </plugin>
