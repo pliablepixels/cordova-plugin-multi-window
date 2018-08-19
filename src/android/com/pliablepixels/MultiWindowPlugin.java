@@ -20,7 +20,7 @@ public class MultiWindowPlugin extends CordovaPlugin {
 
     if (action.equals("get")) {
       boolean imw = checkMultiWindow();
-      Log.d(TAG, "plugin detected multi-window as:"+isInMultiWindowMode);
+      Log.d(TAG, "plugin detected multi-window as:"+imw);
       final PluginResult result = new PluginResult(PluginResult.Status.OK, imw);
       callbackContext.sendPluginResult(result);
       return true;
