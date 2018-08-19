@@ -9,4 +9,4 @@ var IsMultiWindowPlugin = {
   }
 };
 
-module.exports = IsMultiWindowPlugin;
+module.exports = MultiWindowPlugin;
