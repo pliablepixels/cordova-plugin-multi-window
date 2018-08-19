@@ -13,8 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 
-public class IsMultiWindowPlugin extends CordovaPlugin {
-  private static final String TAG = "IsMultiWindowPlugin";
+public class MultiWindowPlugin extends CordovaPlugin {
+  private static final String TAG = "MultiWindowPlugin";
 
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
