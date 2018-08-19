@@ -5,7 +5,10 @@ is from trying to resolve errors as they popped along and mostly I don't have a 
 
 If you can improve it, please PR. 
 
-## Usage
+## Test Repo
+Feel free to clone [this test repo](https://github.com/pliablepixels/is-multiwindow-test)
+
+## Usage inside your app
 `cordova plugin add cordova-plugin-ismultiwindow --save`
 
 To use:
