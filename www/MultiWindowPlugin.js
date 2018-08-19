@@ -1,7 +1,7 @@
 var exec = require('cordova/exec');
-var PLUGIN_NAME='IsMultiWindowPlugin';
+var PLUGIN_NAME='MultiWindowPlugin';
 
-var IsMultiWindowPlugin = {
+var MultiWindowPlugin = {
 
   get: function (cb) {
     //console.log ("*************** JS LAND inside  Get");
