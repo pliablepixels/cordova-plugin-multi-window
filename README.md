@@ -26,7 +26,7 @@ function (err) {
 
 ### To register for onStop() and onStart():
 
-** NOTE: onStart() and onStop() are also invoked in non-multi window mode **
+**NOTE: onStart() and onStop() are also invoked in non-multi window mode**
 
 ```
 // Make sure you do this AFTER deviceReady
