@@ -13,7 +13,7 @@ Feel free to clone [this test repo](https://github.com/pliablepixels/is-multiwin
 ## Usage inside your app
 `cordova plugin add cordova-plugin-multiwindow --save`
 
-To get multi-window state:
+### To get multi-window state:
 
 ```
 window.MultiWindowPlugin.get(function (result) {
@@ -24,7 +24,7 @@ function (err) {
 });
 ```
 
-To register for onStop() and onStart():
+### To register for onStop() and onStart():
 (NOTE: onStart() and onStop() are also invoked in non-muti window mode)
 ```
 // Make sure you do this AFTER deviceReady
@@ -32,7 +32,7 @@ window.MultiWindowPlugin.registerOnStop(onStop);
 window.MultiWindowPlugin.registerOnStart(onStart);
 ```
 
-To de-register for onStop() and onStart():
+### To de-register for onStop() and onStart():
 
 ```
 // Make sure you do this AFTER deviceReady
