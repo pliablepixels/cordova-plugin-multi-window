@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-multi-window",
   "version": "0.0.2",
-  "description": "An Android Cordova plugin that returns true if your app is running in multi window mode for Android 7+ devices",
+  "description": "An Android Cordova plugin that detects onStop(), onStart() and multi-window state",
   "cordova": {
     "id": "cordova-plugin-multi-window",
     "platforms": [
