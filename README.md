@@ -25,7 +25,9 @@ function (err) {
 ```
 
 ### To register for onStop() and onStart():
-(NOTE: onStart() and onStop() are also invoked in non-muti window mode)
+
+*NOTE: onStart() and onStop() are also invoked in non-muti window mode*
+
 ```
 // Make sure you do this AFTER deviceReady
 window.MultiWindowPlugin.registerOnStop(onStop);
