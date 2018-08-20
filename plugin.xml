@@ -27,6 +27,10 @@
             </feature>
         </config-file>
 
+        <!--<config-file target="AndroidManifest.xml" parent="/manifest/application">
+                 <activity android:name="com.pliablepixels.MultiWindowPlugin" android:resizeableActivity="true" />
+        </config-file>-->
+
         <source-file src="src/android/com/pliablepixels/MultiWindowPlugin.java" target-dir="src/com/pliablepixels/" />
     </platform>
 </plugin>
