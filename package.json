@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-multi-window",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Android Cordova plugin that returns true if your app is running in multi window mode for Android 7+ devices",
   "cordova": {
     "id": "cordova-plugin-multi-window",
@@ -17,7 +17,6 @@
     "ecosystem:cordova",
     "cordova-android"
   ],
-
   "author": "Pliable Pixels <pliablepixels@gmail.com>",
   "license": "MIT",
   "bugs": {
