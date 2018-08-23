@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-multi-window",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An Android Cordova plugin that detects onStop(), onStart() and multi-window state",
   "cordova": {
     "id": "cordova-plugin-multi-window",
