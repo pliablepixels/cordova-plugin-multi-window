@@ -27,21 +27,33 @@ function (err) {
 
 **NOTE: onStart() and onStop() are also invoked in non-multi window mode**
 
+This plugin allows multiple callbacks to register to the events, because in practice,
+while building an app you'll want to trap these events in different controllers to manage pause/resume
+states in different views. To do this, you can pass a handle (string) during registration which you can use to de-register that specific instance.
+
 ```
 // Make sure you do this AFTER deviceReady
-window.MultiWindowPlugin.registerOnStop(onStop);
-window.MultiWindowPlugin.registerOnStart(onStart);
+window.MultiWindowPlugin.registerOnStop("my-stop-handle-thiscontroller", onStop);
+window.MultiWindowPlugin.registerOnStart("my-start-handle", onStart);
+// and in a different controller, maybe
+window.MultiWindowPlugin.registerOnStop("my-stop-handle-othercontroller", onOtherStopHandler);
 ```
 
 ### To de-register for onStop() and onStart():
 
 ```
 // Make sure you do this AFTER deviceReady
-window.MultiWindowPlugin.deregisterOnStop();
-window.MultiWindowPlugin.deregisterOnStart();
+window.MultiWindowPlugin.deregisterOnStop("my-stop-handle-othercontroller");
+window.MultiWindowPlugin.deregisterOnStart("my-start-handle");
+```
 
-// or all together
-window.MultiWindowPlugin.deregisterAll();
+Or, all together:
+
+**NOTE: This will de-register ALL callbacks in all controllers across the app, so use with caution**
 
 ```
+// Make sure you do this AFTER deviceReady
+window.MultiWindowPlugin.deregisterAll();
+```
+
 

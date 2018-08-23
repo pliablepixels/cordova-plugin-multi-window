@@ -4,8 +4,8 @@ package com.pliablepixels;
 import android.app.Activity;
 import android.os.Build;
 import android.util.Log;
-
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
+import java.util.ArrayList; 
+import java.util.Iterator;
 
 // Cordova-required packages
 import org.apache.cordova.CallbackContext;
@@ -18,8 +18,32 @@ import org.json.JSONObject;
 
 public class MultiWindowPlugin extends CordovaPlugin {
   private static final String TAG = "MultiWindowPlugin";
-  private CallbackContext callbackStop = null;
-  private CallbackContext callbackStart = null;
+
+  public class MultiCallback {
+      String handle;
+      CallbackContext cb;
+
+      
+      public MultiCallback () {
+        this.handle = "";
+        this.cb = null;
+      }
+
+      public MultiCallback(CallbackContext cb) {
+        this.handle = "";
+        this.cb = cb;
+      }
+
+      public MultiCallback(CallbackContext cb, String handle) {
+        this.handle = handle;
+        this.cb = cb;
+      }
+
+  }
+
+  private ArrayList<MultiCallback> callbackStopList = new ArrayList<MultiCallback>();
+  private ArrayList<MultiCallback> callbackStartList = new ArrayList<MultiCallback>();
+
 
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
@@ -34,39 +58,61 @@ public class MultiWindowPlugin extends CordovaPlugin {
     }
 
     else if (action.equals("registerOnStop")) {
-      callbackStop = callbackContext;
-      Log.d(TAG, "onStop() callback registered");
+      String handle = args.getString(0);
+      MultiCallback cbk = new MultiCallback(callbackContext, handle);
+      callbackStopList.add(cbk);
+      Log.d(TAG, "onStop() callback registered, handle="+ cbk.handle+" total registered = " + callbackStopList.size());
+   
       return true;
 
     }
 
     else if (action.equals("registerOnStart")) {
-      callbackStart = callbackContext;
-      Log.d(TAG, "onStart() callback registered");
+      String handle = args.getString(0);
+      MultiCallback cbk = new MultiCallback(callbackContext, handle);
+      callbackStartList.add(cbk);
+      Log.d(TAG, "onStart() callback registered, handle="+cbk.handle+" total registered = " + callbackStartList.size());
       return true;
 
     }
 
     else if (action.equals("deregisterOnStart")) {
-      callbackStart = null;
-      Log.d(TAG, "onStart() callback deregistered");
+      String handle = args.getString(0);
+      Log.d(TAG, "deregisterOnStart with handle="+handle);
+
+      Iterator<MultiCallback> iter = callbackStartList.iterator();
+      while (iter.hasNext()) {
+        String val = iter.next().handle;
+        if (val.equals(handle)) {
+          iter.remove(); 
+        }
+      }
+      Log.d(TAG, "onStart() callback deregistered, remaining registered = " + callbackStartList.size());
       return true;
 
     }
 
     else if (action.equals("deregisterOnStop")) {
-      callbackStop = null;
-      Log.d(TAG, "onStop() callback deregistered");
+      String handle = args.getString(0);
+      Log.d(TAG, "deregisterOnStop with handle="+handle);
+  
+      Iterator<MultiCallback> iter = callbackStopList.iterator();
+      while (iter.hasNext()) {
+        String val = iter.next().handle;
+        if (val.equals(handle)) {
+          iter.remove(); 
+        }
+      }
+      Log.d(TAG, "onStop() callback deregistered, remaining registered = " + callbackStopList.size());
       return true;
 
     }
 
-    else if (action.equals("deregisterAll")) {
-      callbackStop = null;
-      callbackStart = null;
-      Log.d(TAG, "All callbacks deregistered");
-      return true;
-
+    else if (action.equals ("deregisterAll")) {
+        callbackStartList.clear();
+        callbackStopList.clear();
+        Log.d(TAG, "ALL onStart() & onStop() callbacks cleared");
+        return true;
     }
 
     else {
@@ -78,13 +124,17 @@ public class MultiWindowPlugin extends CordovaPlugin {
 
   public void onStop() {
     Log.d(TAG, "onStop() called");
-    if (callbackStop !=null ) {
+    if (callbackStopList.size() >0) {
       try {
-        JSONObject parameter = new JSONObject();
-        parameter.put("result", true);
-        PluginResult result = new PluginResult(PluginResult.Status.OK, parameter);
-        result.setKeepCallback(true); // for multiple callbacks
-        callbackStop.sendPluginResult(result);
+
+        for (MultiCallback mcb: callbackStopList) {
+          JSONObject parameter = new JSONObject();
+          parameter.put("result", true);
+          PluginResult result = new PluginResult(PluginResult.Status.OK, parameter);
+          result.setKeepCallback(true); // for multiple callbacks
+          mcb.cb.sendPluginResult(result);
+        }
+        
       }
       catch (JSONException e) {Log.e(TAG, e.toString());}
     }
@@ -95,13 +145,17 @@ public class MultiWindowPlugin extends CordovaPlugin {
 
   public void onStart() {
     Log.d(TAG, "onStart() called");
-    if (callbackStart !=null ) {
+    if (callbackStartList.size() >0 ) {
       try {
-        JSONObject parameter = new JSONObject();
-        parameter.put("result", true);
-        PluginResult result = new PluginResult(PluginResult.Status.OK, parameter);
-        result.setKeepCallback(true); // for multiple callbacks
-        callbackStart.sendPluginResult(result);
+
+        for (MultiCallback mcb: callbackStartList) {
+          JSONObject parameter = new JSONObject();
+          parameter.put("result", true);
+          PluginResult result = new PluginResult(PluginResult.Status.OK, parameter);
+          result.setKeepCallback(true); // for multiple callbacks
+          mcb.cb.sendPluginResult(result);
+        }
+        
       }
       catch (JSONException e) {Log.e(TAG, e.toString());}
     }

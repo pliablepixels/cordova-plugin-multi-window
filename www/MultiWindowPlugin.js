@@ -6,22 +6,21 @@ var MultiWindowPlugin = {
   get: function (cb) {
     exec(cb, null, PLUGIN_NAME, 'get',[]);
   },
-  registerOnStart: function (cb) {
-    exec (cb, null, PLUGIN_NAME,'registerOnStart',[]);
+  registerOnStart: function (handle, onStartCallback) {
+    exec (onStartCallback, null, PLUGIN_NAME,'registerOnStart',[handle]);
   },
-  registerOnStop: function (cb) {
-    exec (cb, null, PLUGIN_NAME,'registerOnStop',[]);
+  registerOnStop: function (handle, onStopCallback) {
+    exec (onStopCallback, null, PLUGIN_NAME,'registerOnStop',[handle]);
   },
-  deregisterOnStart: function (cb) {
-    exec (cb, null, PLUGIN_NAME,'deregisterOnStart',[]);
+  deregisterOnStart: function (handle) {
+    exec (null, null, PLUGIN_NAME,'deregisterOnStart',[handle]);
   },
-  deregisterOnStop: function (cb) {
-    exec (cb, null, PLUGIN_NAME,'deregisterOnStop',[]);
+  deregisterOnStop: function (handle) {
+    exec (null, null, PLUGIN_NAME,'deregisterOnStop',[handle]);
   },
-  deregisterAll: function (cb) {
-    exec (cb, null, PLUGIN_NAME,'deregisterAll',[]);
+  deregisterAll: function() {
+    exec (null, null, PLUGIN_NAME, 'deregisterAll');
   }
-
 
 };
 
